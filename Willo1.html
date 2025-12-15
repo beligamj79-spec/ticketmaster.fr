@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ticketmaster – Transfert</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f5f6f7;
+      color: #111;
+    }
+
+    /* HEADER */
+    .topbar {
+      background: linear-gradient(90deg, #0052cc, #0078ff);
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .topbar img {
+      height: 26px;
+    }
+
+    .icons {
+      display: flex;
+      gap: 16px;
+      color: #fff;
+      font-size: 20px;
+    }
+
+    /* SEARCH */
+    .search-box {
+      padding: 14px;
+      background: linear-gradient(90deg, #0052cc, #0078ff);
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 6px;
+      border: none;
+      font-size: 15px;
+    }
+
+    /* CONTENT */
+    .container {
+      padding: 24px 18px 40px;
+      max-width: 420px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    h2 span {
+      display: block;
+      width: 40px;
+      height: 4px;
+      background: #a855f7;
+      margin: 6px auto 0;
+      border-radius: 10px;
+    }
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    /* BUTTONS */
+    .buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      width: 150%;
+      background: #2db300;
+      color: #fff;
+      padding: 14px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn2 {
+      
+      width: 50%;
+      background: #b30000;
+      color: #fff;
+      padding: 14px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    } 
+
+    /*.btn, .btn2 {
+      flex: 1;
+      padding: 14px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }*/
+
+    .btn {
+      background: #2db300;
+      color: #fff;
+    }
+
+    .btn2 {
+      background: #b30000;
+      color: #fff;
+    }
+
+    /* ===== RESPONSIVE ===== */
+
+    /* iPhone & Android */
+    @media (max-width: 480px) {
+      body {
+        background: #fff;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      .topbar img {
+        height: 22px;
+      }
+
+      .icons {
+        font-size: 18px;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+
+      .btn, .btn2 {
+        width: 100%;
+        font-size: 15px;
+      }
+    }
+
+    /* Android large / tablets */
+    @media (min-width: 481px) and (max-width: 768px) {
+      .container {
+        max-width: 520px;
+      }
+    }
+
+    /* Desktop */
+    @media (min-width: 769px) {
+      body {
+        background: #e9eaec;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div class="topbar">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Ticketmaster_logo.svg" alt="Ticketmaster">
+    <div class="icons">👤 🔒</div>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="search-box">
+    <input type="text" placeholder="Événement, artiste ou lieu">
+  </div>
+
+  <!-- FORM -->
+  <div class="container">
+    <h2>TRANSFERT DE BILLET<span></span></h2>
+
+   <center><h4>Ceci est l’option transfert de billet, qui vous permets de transférer des places de votre
+     compte client à un autre compte en toute sécurité </br>
+     NB: Le transfert ne se fais qu’une fois et les places sont attribuées uniquement à une seule personne</h4></center> 
+
+    <div class="field">
+      <input type="text" placeholder="Nom">
+    </div>
+
+    <div class="field">
+      <input type="text" placeholder="Prénom">
+    </div>
+
+    <div class="field">
+      <input type="email" placeholder="Adresse e-mail">
+    </div>
+
+    <div class="buttons">
+      <button class="btn2">Annuler</button>
+      <a href="Willo2.html"><button class="btn">Transférer</button></a>
+    </div>
+  </div>
+
+</body>
+</html>

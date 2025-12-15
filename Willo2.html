@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ticketmaster – Mon compte</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { margin:0; background:#f5f6f7; color:#111; }
+
+    /* TOP BAR */
+    .browser-bar {
+      background:#f2f2f2;
+      padding:10px 14px;
+      display:flex;
+      gap:10px;
+      font-size:14px;
+    }
+    .browser-bar .alert { color:#d93025; font-weight:700; }
+
+    /* HEADER */
+    .topbar {
+      background:linear-gradient(90deg,#0052cc,#0078ff);
+      padding:14px;
+      display:flex;
+      justify-content:space-between;
+      color:#fff;
+    }
+    .topbar img { height:26px; }
+
+    /* SEARCH */
+    .search-box {
+      background:linear-gradient(90deg,#0052cc,#0078ff);
+      padding:14px;
+    }
+    .search-box input {
+      width:100%;
+      padding:12px 14px;
+      border:none;
+      border-radius:6px;
+    }
+
+    /* MENU */
+    .menu {
+      background:#fff;
+      display:flex;
+      justify-content:space-around;
+      padding:16px 8px;
+      border-bottom:1px solid #ddd;
+    }
+    .menu-item {
+      text-align:center;
+      font-size:14px;
+    }
+    .menu-item .icon {
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      border:2px solid #111;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0 auto 6px;
+    }
+    .menu-item.active .icon {
+      background:#0052cc;
+      color:#fff;
+      border:none;
+    }
+
+    /* CONTENT */
+    .container { padding:18px; max-width:420px; margin:auto; }
+
+    .card {
+      background:#fff;
+      border-radius:6px;
+      padding:18px;
+      box-shadow:0 0 0 1px #ddd;
+      text-align:center;
+    }
+
+    .card h2 { font-size:20px; margin-bottom:16px; }
+
+    /* TRANSFER STATUS */
+    .status-text {
+      font-size:15px;
+      margin-bottom:12px;
+      font-weight:500;
+    }
+
+    .progress-bar {
+      width:100%;
+      height:12px;
+      background:#e5e7eb;
+      border-radius:10px;
+      overflow:hidden;
+      margin-bottom:12px;
+    }
+
+    .progress {
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg,#0052cc,#0078ff);
+      transition:width 1s linear;
+    }
+
+    .countdown {
+      font-size:14px;
+      color:#444;
+    }
+
+    .filter {
+      margin-top:14px;
+      font-size:14px;
+    }
+
+    /* FOOTER */
+    .legal {
+      font-size:12px;
+      color:#555;
+      line-height:1.5;
+      margin:18px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width:480px){
+      body{background:#fff;}
+      .card h2{font-size:18px;}
+      .menu-item{font-size:12px;}
+      .menu-item .icon{width:34px;height:34px;}
+    }
+
+    .cancel-btn {
+  margin-top: 14px;
+  width: 100%;
+  padding: 12px;
+  background: #b30000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cancel-btn:disabled {
+  background: #999;
+  cursor: not-allowed;
+}
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Safari bar 
+  <div class="browser-bar">
+    <span class="alert">❗</span>
+    <strong>www.ticketmaster.fr</strong>
+  </div>-->
+
+  <!-- Header -->
+  <div class="topbar">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Ticketmaster_logo.svg">
+    <div>☰ 👤 🛍️</div>
+  </div>
+
+  <!-- Search -->
+  <div class="search-box">
+    <input type="text" placeholder="Événement, artiste ou lieu">
+  </div>
+
+  <!-- Menu -->
+  <div class="menu">
+    <div class="menu-item active">
+      <div class="icon">🎟️</div>
+      Mes commandes
+    </div>
+    <div class="menu-item">
+      <div class="icon">ℹ️</div>
+      Mes informations
+    </div>
+    <div class="menu-item">
+      <div class="icon">🔔</div>
+      Alertes E-mail
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="container">
+    <div class="card">
+      <h2>MES COMMANDES</h2>
+
+      <div class="status-text">
+        Le transfert est en cours…
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+      </div>
+
+      <div class="countdown" id="countdown">
+        Le transfert se terminera dans 00:00
+      </div>
+      <button id="cancelBtn" class="cancel-btn">
+  Annuler le transfert
+</button>
+
+
+     <!-- <div class="filter">
+        Filtrer par : <strong>Toutes les commandes ▾</strong>
+      </div>-->
+    </div>
+  </div>
+
+  <!-- Legal -->
+  <div class="legal">
+    Nous utilisons vos informations pour vous fournir nos services, et pour vous informer des préventes, actualités ou bons plans concerts et spectacles, de manière pe
+ <script>
+  const totalTime = 600; // 10 minutes en secondes
+  let elapsed = 0;
+  let interval = null;
+  let cancelled = false;
+
+  const progress = document.getElementById('progress');
+  const countdown = document.getElementById('countdown');
+  const cancelBtn = document.getElementById('cancelBtn');
+
+  function startTransfer() {
+    interval = setInterval(() => {
+      if (cancelled) return;
+
+      elapsed++;
+
+      const percent = (elapsed / totalTime) * 100;
+      progress.style.width = percent + '%';
+
+      const min = Math.floor(elapsed / 60);
+      const sec = elapsed % 60;
+
+      countdown.textContent =
+        `Le transfert se terminera dans ${min}:${sec.toString().padStart(2,'0')}`;
+
+      if (elapsed >= totalTime) {
+        clearInterval(interval);
+        progress.style.width = '100%';
+        countdown.textContent = '✅ Transfert terminé avec succès';
+        cancelBtn.disabled = true;
+      }
+    }, 1000);
+  }
+
+  cancelBtn.addEventListener('click', () => {
+    cancelled = true;
+    clearInterval(interval);
+    countdown.textContent = '⛔ Transfert annulé';
+    progress.style.background = '#b30000';
+    cancelBtn.disabled = true;
+  });
+
+  // 🚀 Démarrage automatique
+  window.addEventListener('load', startTransfer);
+</script>
+
+</body>
+</html>
