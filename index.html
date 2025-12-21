@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title class="title">Ticketmaster – Transfert</title>
+
+  <title>Ticketmaster – Transfert</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
@@ -28,8 +29,15 @@
       justify-content: space-between;
     }
 
-    .topbar img {
-      height: 26px;
+    .topbar-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .site-title {
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
     }
 
     .icons {
@@ -67,10 +75,6 @@
       margin-bottom: 22px;
     }
 
-    .title{
-      font-size: 10px;
-      color: white;
-    }
     h2 span {
       display: block;
       width: 40px;
@@ -78,6 +82,13 @@
       background: #a855f7;
       margin: 6px auto 0;
       border-radius: 10px;
+    }
+
+    h4 {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+      margin-bottom: 20px;
     }
 
     .field {
@@ -99,7 +110,7 @@
       margin-top: 10px;
     }
 
-    .btn {
+.btn {
       width: 150%;
       background: #2db300;
       color: #fff;
@@ -124,15 +135,9 @@
       cursor: pointer;
     } 
 
-    /*.btn, .btn2 {
-      flex: 1;
-      padding: 14px;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-    }*/
+    h5{
+        font-weight: 700;
+    }
 
     .btn {
       background: #2db300;
@@ -146,7 +151,6 @@
 
     /* ===== RESPONSIVE ===== */
 
-    /* iPhone & Android */
     @media (max-width: 480px) {
       body {
         background: #fff;
@@ -156,8 +160,10 @@
         font-size: 20px;
       }
 
-      .topbar img {
-        height: 22px;
+      .site-title {
+        color: white;
+        font-size: 16px;
+        font-weight: 700;
       }
 
       .icons {
@@ -167,21 +173,14 @@
       .buttons {
         flex-direction: column;
       }
-
-      .btn, .btn2 {
-        width: 50%;
-        font-size: 15px;
-      }
     }
 
-    /* Android large / tablets */
     @media (min-width: 481px) and (max-width: 768px) {
       .container {
         max-width: 520px;
       }
     }
 
-    /* Desktop */
     @media (min-width: 769px) {
       body {
         background: #e9eaec;
@@ -194,7 +193,9 @@
 
   <!-- HEADER -->
   <div class="topbar">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Ticketmaster_logo.svg" alt="Ticketmaster">
+    <div class="topbar-left">
+      <span class="site-title">Ticketmaster</span>
+    </div>
     <div class="icons">👤 🔒</div>
   </div>
 
@@ -207,9 +208,11 @@
   <div class="container">
     <h2>TRANSFERT DE BILLET<span></span></h2>
 
-   <h4>Ceci est l’option transfert de billet, qui vous permets de transférer des places de votre
-     compte client à un autre compte en toute sécurité </br>
-     NB: Le transfert ne se fais qu’une fois et les places sont attribuées uniquement à une seule personne</h4>
+    <h5>
+      Ceci est l’option transfert de billet, qui vous permet de transférer des places de votre
+      compte client à un autre compte en toute sécurité.<br>
+      NB : Le transfert ne se fait qu’une seule fois et les places sont attribuées uniquement à une seule personne.
+    </h5>
 
     <div class="field">
       <input type="text" placeholder="Nom">
@@ -225,7 +228,9 @@
 
     <div class="buttons">
       <button class="btn2">Annuler</button>
-      <a href="Willo2.html"><button class="btn">Transférer</button></a>
+      <a href="Willo2.html">
+        <button class="btn">Transférer</button>
+      </a>
     </div>
   </div>
 
